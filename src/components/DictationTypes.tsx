@@ -216,7 +216,9 @@ function SpecialtyCard({ s, i }: { s: typeof SPECIALTIES[0]; i: number }) {
 
 export default function DictationTypes() {
   return (
-    <section style={{
+    <section 
+    id='features'
+    style={{
       padding: '100px 0',
       background: '#ffffff',
       fontFamily: "'Montserrat', sans-serif",

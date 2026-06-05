@@ -29,7 +29,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section style={{
+    <section 
+    id='about'
+    style={{
       minHeight: '100vh',
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',

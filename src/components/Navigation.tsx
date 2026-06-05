@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const NAV_LINKS = ['Features', 'How It Works', 'About'];
+
+const NAV_LINKS = [
+  {label: 'About', id: 'about'},
+  {label: 'How It Works', id: 'how-it-works'},
+  {label: 'Features', id: 'features'},
+];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -14,6 +19,18 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    if (id === 'about') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const section = document.getElementById(id);
+    if (section) {
+      const y = section.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth'});
+    }
+  }
   return (
     <>
       <motion.div style={{
@@ -46,23 +63,25 @@ export default function Navigation() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
           {NAV_LINKS.map(link => (
             <a
-              key={link}
-              href="#"
-              style={{
-                fontSize: '0.9rem', fontWeight: 500,
-                color: '#718096', textDecoration: 'none',
-                transition: 'color 0.2s', cursor: 'none',
-              }}
-              onMouseEnter={e => (e.target as HTMLElement).style.color = '#4169E1'}
-              onMouseLeave={e => (e.target as HTMLElement).style.color = '#718096'}
-            >
-              {link}
+            key={link.id}
+            href={'#' + link.id}
+            onClick={(e) => handleNavClick(e, link.id)}
+            style={{
+              fontSize: '0.9rem', fontWeight: 500,
+              color: '#718096', textDecoration: 'none',
+              transition: 'color 0.2s', cursor: 'none',
+            }}
+            onMouseEnter={e => (e.target as HTMLElement).style.color = '#4169E1'}
+            onMouseLeave={e => (e.target as HTMLElement).style.color= '#718096'}
+          >
+            {link.label}
             </a>
           ))}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button
+          onClick={() => {window.location.href = 'https://cogniscribe.in/login'}}
             style={{
               padding: '9px 22px', fontSize: '0.875rem', fontWeight: 600,
               fontFamily: "'Montserrat', sans-serif",
@@ -76,6 +95,7 @@ export default function Navigation() {
             Sign In
           </button>
           <button
+          onClick={() => {window.location.href = 'https://cogniscribe.in/login'}}
             style={{
               padding: '9px 22px', fontSize: '0.875rem', fontWeight: 700,
               fontFamily: "'Montserrat', sans-serif",

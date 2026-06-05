@@ -233,7 +233,9 @@ function IconCircle({ type, hovered, Icon }: { type: string; hovered: boolean; I
 
 export default function RecordSaveExport() {
   return (
-    <section style={{
+    <section 
+    id='how-it-works'
+    style={{
       padding: '100px 0',
       background: '#F8F9FB',
       fontFamily: "'Montserrat', sans-serif",
