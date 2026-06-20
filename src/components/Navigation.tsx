@@ -81,7 +81,7 @@ export default function Navigation() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button
-          onClick={() => {window.location.href = 'https://cogniscribe.in/login'}}
+          onClick={() => {window.location.href = 'https://app.cogniscribe.in/login'}}
             style={{
               padding: '9px 22px', fontSize: '0.875rem', fontWeight: 600,
               fontFamily: "'Montserrat', sans-serif",
@@ -95,7 +95,7 @@ export default function Navigation() {
             Sign In
           </button>
           <button
-          onClick={() => {window.location.href = 'https://cogniscribe.in/login'}}
+          onClick={() => {window.location.href = 'https://app.cogniscribe.in/login'}}
             style={{
               padding: '9px 22px', fontSize: '0.875rem', fontWeight: 700,
               fontFamily: "'Montserrat', sans-serif",
