@@ -142,7 +142,7 @@ export default function MissionVision() {
               color: 'var(--text-light)', fontSize: '0.97rem',
               lineHeight: 1.85, margin: '0 0 24px', fontWeight: 500,
             }}>
-              To eliminate the burden of documentation and let doctors reclaim their time —
+              To eliminate the burden of documentation and let doctors reclaim their time
               by building fast, reliable, and intelligent systems that integrate seamlessly
               into a doctor's natural workflow.
             </p>
