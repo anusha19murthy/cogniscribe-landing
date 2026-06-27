@@ -299,7 +299,7 @@ export default function PortalIntro({ onComplete }: Props) {
                 lineHeight: 1,
                 letterSpacing: '-0.01em',
               }}>
-                CogniScribe
+                Welcome
               </div>
               <div style={{
                 fontFamily: "'Montserrat', sans-serif",
@@ -310,7 +310,7 @@ export default function PortalIntro({ onComplete }: Props) {
                 marginTop: 5,
                 textTransform: 'uppercase',
               }}>
-                An AI Medical Scribe
+                To Effortless Documentation
               </div>
             </div>
           </div>
