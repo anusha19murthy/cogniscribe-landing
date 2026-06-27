@@ -640,7 +640,7 @@ export default function PortalIntro({ onComplete }: Props) {
           color: '#475569', margin: 0,
           letterSpacing: '0.01em',
         }}>
-          AI-powered medical scribe — built for doctors
+          AI-powered medical scribe built for doctors
         </p>
 
         <button
