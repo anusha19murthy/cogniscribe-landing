@@ -269,7 +269,7 @@ export default function RecordSaveExport() {
             fontSize: '1.05rem', lineHeight: 1.7,
             maxWidth: 560, margin: '0 auto', fontWeight: 500,
           }}>
-            Three simple steps. From spoken consultation to structured EHR record — automatically.
+            Three simple steps. From spoken consultation to structured EHR record automatically.
           </p>
         </motion.div>
 

@@ -197,7 +197,7 @@ export default function MissionVision() {
               fontSize: '0.97rem', lineHeight: 1.85,
               margin: '0 0 24px', fontWeight: 500,
             }}>
-              To redefine clinical documentation — so every doctor can walk into a
+              To redefine clinical documentation, so every doctor can walk into a
               consultation room and give their patient one hundred percent of their
               attention, knowing the documentation is already taken care of.
             </p>

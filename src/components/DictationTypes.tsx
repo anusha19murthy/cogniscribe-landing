@@ -9,7 +9,7 @@ const SPECIALTIES = [
   {
     Icon: IconClipboard, title: 'OPD', type: 'opd',
     color: '#7c3aed', light: '#f5f3ff',
-    desc: 'Chief complaint, vitals, diagnosis, medications — structured instantly.',
+    desc: 'Chief complaint, vitals, diagnosis, medications structured instantly.',
     tags: ['Vitals', 'Diagnosis', 'Rx'],
     iconAnim: 'bounce',
   },
@@ -30,7 +30,7 @@ const SPECIALTIES = [
   {
     Icon: IconEye, title: 'Imaging', type: 'imaging',
     color: '#db2777', light: '#fdf2f8',
-    desc: 'Findings, impression, recommendation — ready to sign.',
+    desc: 'Findings, impression, recommendation ready to sign.',
     tags: ['Findings', 'Impression'],
     iconAnim: 'blink',
   },
@@ -39,7 +39,7 @@ const SPECIALTIES = [
 const FEATURES = [
   {
     Icon: IconFileText, title: 'Structured Notes with Flexible Export',
-    body: 'Every dictation becomes a clean, professional, structured clinical note — formatted specifically for that note type. Export as branded PDF, share, print, or send.',
+    body: 'Every dictation becomes a clean, professional, structured clinical note formatted specifically for that note type. Export as branded PDF, share, print, or send.',
   },
   {
     Icon: IconGlobe, title: 'Built for Indian Doctors, Indian Languages',
@@ -47,7 +47,7 @@ const FEATURES = [
   },
   {
     Icon: IconCalendar, title: "Every Patient's History in One Place",
-    body: 'Stop searching across registers, files, and apps. Every patient has their own complete record — every note, every visit — organized and accessible in seconds.',
+    body: 'Stop searching across registers, files, and apps. Every patient has their own complete record every note, every visit organized and accessible in seconds.',
   },
 ];
 

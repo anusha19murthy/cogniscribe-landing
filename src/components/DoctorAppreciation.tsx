@@ -11,7 +11,7 @@ const PARAGRAPHS = [
     highlights: [],
   },
   {
-    text: `CogniScribe exists for you and for one reason — to give that time back to you.`,
+    text: `CogniScribe exists for you and for one reason to give that time back to you.`,
     highlights: ['CogniScribe exists for you', 'to give that time back to you'],
   },
   {
@@ -162,7 +162,7 @@ export default function DoctorAppreciation() {
             fontWeight: 700, fontStyle: 'italic',
             color: '#4169E1', lineHeight: 1.6, margin: 0,
           }}>
-            "Built on how clinical work actually happens — not how software thinks it should."
+            "Built on how clinical work actually happens, not how software thinks it should."
           </p>
         </motion.div>
 
@@ -183,14 +183,14 @@ export default function DoctorAppreciation() {
             fontSize: '1.1rem', lineHeight: 1.8, margin: '0 0 16px',
             fontWeight: 500,
           }}>
-            "The best doctors listen first. CogniScribe makes sure the notes are already taken —
+            "The best doctors listen first. CogniScribe makes sure the notes are already taken
             so your patients always have your full attention."
           </p>
           <p style={{
             color: '#4169E1', fontWeight: 700,
             fontSize: '0.9rem', margin: 0,
           }}>
-            — The CogniScribe Team
+            - The CogniScribe Team
           </p>
         </motion.div>
       </div>

@@ -57,7 +57,7 @@ export default function Closing() {
               lineHeight: 1.75, fontWeight: 500,
               maxWidth: 540, margin: '0 auto 16px',
             }}>
-              Every feature, every workflow, every decision — built around the doctor's reality.
+              Every feature, every workflow, every decision built around the doctor's reality.
             </p>
             <p style={{
               color: '#475569',
@@ -65,7 +65,7 @@ export default function Closing() {
               lineHeight: 1.75, fontWeight: 500,
               maxWidth: 540, margin: '0 auto 44px',
             }}>
-              Join 2,000+ doctors using CogniScribe to focus on what matters most — their patients.
+              Join 2,000+ doctors using CogniScribe to focus on what matters most their patients.
             </p>
 
             <div style={{

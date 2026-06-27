@@ -86,7 +86,7 @@ export default function Hero() {
           maxWidth: 500, margin: '0 0 36px', fontWeight: 500,
         }}>
           CogniScribe transcribes your consultations in real-time, generating
-          structured SOAP notes instantly — so you can focus on your patients,
+          structured SOAP notes instantly so you can focus on your patients,
           not paperwork.
         </p>
 
@@ -106,7 +106,7 @@ export default function Hero() {
         </div>
 
         <p style={{ fontSize: '0.8rem', color: 'var(--text-light)', fontWeight: 500 }}>
-          No credit card required · HIPAA Compliant
+          No credit card required
         </p>
       </motion.div>
 
