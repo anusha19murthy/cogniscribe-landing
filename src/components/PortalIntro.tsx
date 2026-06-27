@@ -310,7 +310,7 @@ export default function PortalIntro({ onComplete }: Props) {
                 marginTop: 5,
                 textTransform: 'uppercase',
               }}>
-                Medical Center
+                An AI Medical Scribe
               </div>
             </div>
           </div>
