@@ -149,7 +149,7 @@ export default function Closing() {
             fontSize: '0.8rem',
             color: '#94a3b8', fontWeight: 500,
           }}>
-            © 2025 CogniScribe. All rights reserved.
+            © 2026 CogniScribe. All rights reserved.
           </div>
         </div>
       </footer>
