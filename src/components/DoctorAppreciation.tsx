@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const PARAGRAPHS = [
@@ -57,7 +57,7 @@ function ECG() {
     'L700,40 Q715,22 730,40 L900,40 Q910,32 920,40 L960,40 L964,44 L970,4 L976,56 L982,40 ' +
     'L1020,40 Q1035,22 1050,40 L1200,40';
   return (
-    <div ref={ref} style={{ maxWidth: 900, margin: '0 auto 48px', padding: '0 5%' }}>
+    <div ref={ref} style={{ maxWidth: 900, margin: '0 auto 48px', padding: '0 5%', boxSizing: 'border-box' }}>
       <svg width="100%" height="60" viewBox="0 0 1200 80" preserveAspectRatio="xMidYMid meet">
         <path d={path} fill="none" stroke="rgba(65,105,225,0.08)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d={path} fill="none" stroke="#4169E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -73,20 +73,31 @@ function ECG() {
 }
 
 export default function DoctorAppreciation() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 600);
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
+
   return (
     <section style={{
-      padding: '100px 0',
+      padding: isMobile ? '60px 0' : '100px 0',
       background: '#ffffff',
       fontFamily: "'Montserrat', sans-serif",
+      boxSizing: 'border-box',
+      overflowX: 'hidden',
     }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%', boxSizing: 'border-box' }}>
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7 }}
-          style={{ textAlign: 'center', marginBottom: 48 }}
+          style={{ textAlign: 'center', marginBottom: isMobile ? 32 : 48 }}
         >
           <div style={{
             color: '#4169E1',
@@ -111,11 +122,11 @@ export default function DoctorAppreciation() {
         {/* ECG */}
         <ECG />
 
-        {/* 2x2 floating cards */}
+        {/* Cards — single column on mobile */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 24,
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: isMobile ? 16 : 24,
           maxWidth: 960, margin: '0 auto 56px',
         }}>
           {PARAGRAPHS.map((p, i) => (
@@ -129,12 +140,12 @@ export default function DoctorAppreciation() {
               style={{
                 background: '#ffffff',
                 borderRadius: 16,
-                padding: '32px 40px',
+                padding: isMobile ? '24px 24px' : '32px 40px',
                 boxShadow: '0 4px 24px rgba(65,105,225,0.08)',
-                borderLeft: '3px solid #4169E1',
                 border: '1px solid rgba(65,105,225,0.12)',
                 borderLeftWidth: 3,
                 borderLeftColor: '#4169E1',
+                boxSizing: 'border-box',
               }}
             >
               <p style={{
@@ -155,7 +166,7 @@ export default function DoctorAppreciation() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ maxWidth: 680, margin: '0 auto 48px', textAlign: 'center' }}
+          style={{ maxWidth: isMobile ? '100%' : 680, margin: '0 auto 48px', textAlign: 'center', padding: isMobile ? '0 4%' : 0, boxSizing: 'border-box' }}
         >
           <p style={{
             fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
@@ -173,9 +184,10 @@ export default function DoctorAppreciation() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           style={{
-            maxWidth: 680, margin: '0 auto',
+            maxWidth: isMobile ? '100%' : 680, margin: '0 auto',
             textAlign: 'center',
-            padding: '40px 32px',
+            padding: isMobile ? '24px 4%' : '40px 32px',
+            boxSizing: 'border-box',
           }}
         >
           <p style={{

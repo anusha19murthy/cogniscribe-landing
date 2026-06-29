@@ -1,4 +1,4 @@
-import { useRef, useState, Suspense } from 'react';
+import { useRef, useState, useEffect, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -8,13 +8,20 @@ import { capsuleBreakState } from '../three/capsuleBreakState';
 export default function MissionVision() {
   const sectionRef = useRef<HTMLElement>(null);
   const [broken, setBroken] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 600);
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
 
-  // Trigger break at 15% scroll through section
   useTransform(scrollYProgress, (v) => {
     if (v >= 0.15 && !capsuleBreakState.triggered) {
       capsuleBreakState.triggered = true;
@@ -26,19 +33,21 @@ export default function MissionVision() {
     <section
       ref={sectionRef}
       style={{
-        padding: '100px 0',
+        padding: isMobile ? '60px 0' : '100px 0',
         background: '#ffffff',
         fontFamily: "'Montserrat', sans-serif",
         minHeight: '80vh',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
       }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%', boxSizing: 'border-box' }}>
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: 'center', marginBottom: 56 }}
+          style={{ textAlign: 'center', marginBottom: isMobile ? 32 : 56 }}
         >
           <div style={{
             color: '#4169E1',
@@ -58,9 +67,8 @@ export default function MissionVision() {
           </h2>
         </motion.div>
 
-        {/* Capsule canvas */}
         {!broken && (
-          <div style={{ width: '100%', height: 320, marginBottom: 48 }}>
+          <div style={{ width: '100%', height: isMobile ? 220 : 320, marginBottom: isMobile ? 32 : 48 }}>
             <Canvas
               camera={{ position: [0, 0, 3], fov: 40 }}
               style={{ width: '100%', height: '100%', background: 'transparent' }}
@@ -74,25 +82,24 @@ export default function MissionVision() {
           </div>
         )}
 
-        {/* Cards appear after break */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={broken ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 28,
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gap: isMobile ? 20 : 28,
             pointerEvents: broken ? 'auto' : 'none',
           }}
         >
-          {/* Mission */}
           <div style={{
             background: '#ffffff',
             borderRadius: 20,
-            padding: 44,
+            padding: isMobile ? 28 : 44,
             boxShadow: '0 8px 32px rgba(65,105,225,0.12)',
             border: '1px solid rgba(65,105,225,0.12)',
+            boxSizing: 'border-box',
           }}>
             <style>{`
               @keyframes mv-spin { to { transform: rotate(360deg); } }
@@ -100,12 +107,7 @@ export default function MissionVision() {
               @keyframes mv-eye-blink { 0%,90%,100%{transform:scaleY(1)} 95%{transform:scaleY(0.1)} }
               @keyframes mv-scan { 0%,100%{opacity:0.4;transform:scaleX(0.4)} 50%{opacity:1;transform:scaleX(1)} }
             `}</style>
-            <div style={{
-              position: 'relative',
-              width: 52, height: 52,
-              marginBottom: 24,
-            }}>
-              {/* Rotating rings */}
+            <div style={{ position: 'relative', width: 52, height: 52, marginBottom: 24 }}>
               <div style={{
                 position: 'absolute', inset: -6, borderRadius: '50%',
                 border: '1.5px dashed rgba(65,105,225,0.25)',
@@ -131,17 +133,10 @@ export default function MissionVision() {
                 </svg>
               </div>
             </div>
-            <h3 style={{
-              fontWeight: 700, fontSize: '1.4rem',
-              color: 'var(--text)', margin: '0 0 16px',
-              letterSpacing: '-0.01em',
-            }}>
+            <h3 style={{ fontWeight: 700, fontSize: '1.4rem', color: 'var(--text)', margin: '0 0 16px', letterSpacing: '-0.01em' }}>
               Our Mission
             </h3>
-            <p style={{
-              color: 'var(--text-light)', fontSize: '0.97rem',
-              lineHeight: 1.85, margin: '0 0 24px', fontWeight: 500,
-            }}>
+            <p style={{ color: 'var(--text-light)', fontSize: '0.97rem', lineHeight: 1.85, margin: '0 0 24px', fontWeight: 500 }}>
               To eliminate the burden of documentation and let doctors reclaim their time
               by building fast, reliable, and intelligent systems that integrate seamlessly
               into a doctor's natural workflow.
@@ -149,19 +144,14 @@ export default function MissionVision() {
             <div style={{ width: 40, height: 3, background: '#4169E1', borderRadius: 2 }} />
           </div>
 
-          {/* Vision */}
           <div style={{
             background: '#4169E1',
             borderRadius: 20,
-            padding: 44,
+            padding: isMobile ? 28 : 44,
             boxShadow: '0 8px 32px rgba(65,105,225,0.25)',
+            boxSizing: 'border-box',
           }}>
-            <div style={{
-              position: 'relative',
-              width: 52, height: 52,
-              marginBottom: 24,
-            }}>
-              {/* Scanning rings */}
+            <div style={{ position: 'relative', width: 52, height: 52, marginBottom: 24 }}>
               <div style={{
                 position: 'absolute', inset: -6, borderRadius: '50%',
                 border: '1.5px solid rgba(255,255,255,0.3)',
@@ -185,18 +175,10 @@ export default function MissionVision() {
                 </div>
               </div>
             </div>
-            <h3 style={{
-              fontWeight: 700, fontSize: '1.4rem',
-              color: 'white', margin: '0 0 16px',
-              letterSpacing: '-0.01em',
-            }}>
+            <h3 style={{ fontWeight: 700, fontSize: '1.4rem', color: 'white', margin: '0 0 16px', letterSpacing: '-0.01em' }}>
               Our Vision
             </h3>
-            <p style={{
-              color: 'rgba(255,255,255,0.9)',
-              fontSize: '0.97rem', lineHeight: 1.85,
-              margin: '0 0 24px', fontWeight: 500,
-            }}>
+            <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.97rem', lineHeight: 1.85, margin: '0 0 24px', fontWeight: 500 }}>
               To redefine clinical documentation, so every doctor can walk into a
               consultation room and give their patient one hundred percent of their
               attention, knowing the documentation is already taken care of.

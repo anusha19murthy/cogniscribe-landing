@@ -1,4 +1,4 @@
-import { useEffect, useRef, Suspense } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import { motion } from 'framer-motion';
@@ -11,6 +11,14 @@ import { magneticEffect } from '../animations/hoverEffects';
 export default function Hero() {
   const btn1Ref = useRef<HTMLDivElement>(null);
   const btn2Ref = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 768);
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
 
   useEffect(() => {
     const cleanups: (() => void)[] = [];
@@ -34,20 +42,23 @@ export default function Hero() {
     style={{
       minHeight: '100vh',
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
       alignItems: 'center',
       position: 'relative',
       overflow: 'hidden',
       paddingTop: 64,
       background: 'var(--bg)',
       fontFamily: "'Montserrat', sans-serif",
+      boxSizing: 'border-box',
+      width: '100%',
+      maxWidth: '100vw',
     }}>
       {/* Left — text */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        style={{ padding: '0 5% 0 8%', zIndex: 2 }}
+        style={{ padding: isMobile ? '0 6%' : '0 5% 0 8%', zIndex: 2, boxSizing: 'border-box' }}
       >
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -71,7 +82,7 @@ export default function Hero() {
         <h1 style={{
           fontFamily: "'Montserrat', sans-serif",
           fontWeight: 800,
-          fontSize: 'clamp(2.6rem, 5vw, 4.2rem)',
+          fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
           color: 'var(--text)',
           lineHeight: 1.1, letterSpacing: '-0.025em',
           margin: '0 0 22px',
@@ -83,7 +94,7 @@ export default function Hero() {
         <p style={{
           color: 'var(--text-light)',
           fontSize: '1.05rem', lineHeight: 1.75,
-          maxWidth: 500, margin: '0 0 36px', fontWeight: 500,
+          maxWidth: isMobile ? '100%' : 500, margin: '0 0 36px', fontWeight: 500,
         }}>
           CogniScribe transcribes your consultations in real-time, generating
           structured SOAP notes instantly so you can focus on your patients,
@@ -115,7 +126,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.3 }}
-        style={{ width: '100%', height: '70vh', position: 'relative' }}
+        style={{ width: '100%', height: isMobile ? '45vh' : '70vh', position: 'relative', boxSizing: 'border-box' }}
       >
         <Canvas
           camera={{ position: [0, 0, 7], fov: 42 }}

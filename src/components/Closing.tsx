@@ -129,7 +129,7 @@ export default function Closing() {
         }}>
           
 
-          <div style={{ display: 'flex', gap: 28 }}>
+          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', justifyContent: 'center' }}>
             {['Features', 'Pricing', 'Privacy', 'Terms', 'Contact'].map(l => (
               <a key={l} href="#" style={{
                 fontSize: '0.85rem', fontWeight: 500,
